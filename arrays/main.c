@@ -211,11 +211,30 @@ void SwapReverse(struct Array *arr)
     swap(&arr->data[i], &arr->data[j]);
 }
 
+void LeftShift(struct Array *arr)
+{
+  for (int i = 0; i < arr->length - 1; i++)
+    arr->data[i] = arr->data[i + 1];
+
+  arr->length--;
+  arr->data[arr->length] = 0;
+}
+
+void LeftRotate(struct Array *arr)
+{
+  int tmp = arr->data[0];
+
+  for (int i = 0; i < arr->length - 1; i++)
+    arr->data[i] = arr->data[i + 1];
+
+  arr->data[arr->length - 1] = tmp;
+}
+
 int main()
 {
   struct Array arr = {{2, 3, 4, 5, 6}, 20, 5};
 
-  SwapReverse(&arr);
+  LeftRotate(&arr);
 
   Display(arr);
 
